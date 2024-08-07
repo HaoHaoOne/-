@@ -1,45 +1,48 @@
 const dinners = [
     {
-        name: '披薩',
-        image: 'https://example.com/spaghetti.jpg',
-        description: ' 必勝客、達美樂',
+        name: 'Pizza',
+        image: 'path/to/pizza.jpg',
+        description: '必勝客、達美樂',
         links: [
             { name: '必勝客', url: 'https://www.pizzahut.com.tw/' },
             { name: '達美樂', url: 'https://www.dominos.com.tw/' }
         ]
     },
     {
-        name: '壽司',
-        image: 'https://example.com/sushi.jpg',
+        name: 'Sushi',
+        image: 'path/to/sushi.jpg',
         description: '藏壽司、壽司郎、爭鮮',
         links: [
-            { name: '藏壽司', url: 'https://www.kurasushi.tw/' },
+            { name: '藏壽司', url: 'https://www.kura-sushi.com.tw/' },
             { name: '壽司郎', url: 'https://www.sushiro.com.tw/' },
-            { name: '爭鮮', url: 'https://www.sushiexpress.com.tw/sushi-express/index' },
+            { name: '爭鮮', url: 'https://www.sushiexpress.com.tw/' }
         ]
     },
     {
-        name: '牛排',
-        image: 'https://example.com/steak.jpg',
-        description: '經典的意大利披薩，配上多種蔬菜和肉類。',
+        name: 'Steak',
+        image: 'path/to/Steak.jpg',
+        description: '西堤、陶板屋、王品、貴族世家',
         links: [
             { name: '西堤', url: 'https://www.tasty.com.tw/' },
-            { name: '陶板屋', url: 'https://www.tokiya.com.tw/' },
-            { name: '王品', url: 'https://www.wowprime.com/zh-tw/' },
+            { name: '陶板屋', url: 'https://www.taoban.com.tw/' },
+            { name: '王品', url: 'https://www.wangsteak.com.tw/' },
+            { name: '貴族世家', url: 'https://www.noblefamily.com.tw/' }
         ]
     }
 ];
 
-document.getElementById('selectButton').addEventListener('click', () => {
-    const randomDinner = dinners[Math.floor(Math.random() * dinners.length)];
-    document.getElementById('dinnerName').textContent = randomDinner.name;
-    document.getElementById('dinnerImage').src = randomDinner.image;
+document.getElementById('selectButton').addEventListener('click', function() {
+    const randomIndex = Math.floor(Math.random() * dinners.length);
+    const selectedDinner = dinners[randomIndex];
+
+    document.getElementById('dinnerName').textContent = selectedDinner.name;
+    document.getElementById('dinnerImage').src = selectedDinner.image;
     document.getElementById('dinnerImage').style.display = 'block';
-    document.getElementById('dinnerDescription').textContent = randomDinner.description;
-    
+    document.getElementById('dinnerDescription').textContent = selectedDinner.description;
+
     const linksContainer = document.getElementById('dinnerLinks');
     linksContainer.innerHTML = ''; // 清空先前的連結
-    randomDinner.links.forEach(link => {
+    selectedDinner.links.forEach(link => {
         const linkElement = document.createElement('a');
         linkElement.href = link.url;
         linkElement.textContent = link.name;
